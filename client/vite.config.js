@@ -19,4 +19,18 @@ export default defineConfig({
     },
     historyApiFallback: true,
   },
+  build: {
+    rollupOptions: {
+      external: [],
+      output: {
+        manualChunks: undefined,
+      },
+    },
+    target: 'es2015',
+    minify: 'terser',
+    sourcemap: false,
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
 });
