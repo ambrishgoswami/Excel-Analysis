@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "author": {
-    "name": "Shivam Sharma",
-    "email": "shivamsharma77607@gmail.com",
-    "github": "@Shivam-Sharma-1",
-    "linkedin": "https://www.linkedin.com/in/shivamsharma77607"
+    "name": "Ambrish Goswami",
+    "email": "ambrishgoswami0@gmail.com",
+    "github": "https://github.com/ambrishgoswami",
+    "linkedin": ""
   },
   "type": "module",
   "scripts": {
@@ -43,6 +43,12 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "@rollup/rollup-linux-x64-gnu": "^4.9.0"
+  },
+  "overrides": {
+    "rollup": {
+      "@rollup/rollup-linux-x64-gnu": "^4.9.0"
+    }
   }
 }
