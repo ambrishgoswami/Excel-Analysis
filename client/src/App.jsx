@@ -34,6 +34,10 @@ import AdminPanel from "./scenes/AdminPanel";
 import Terms from "./scenes/Terms";
 import NotFound from "./scenes/NotFound";
 import Settings from './scenes/Settings';
+import ErrorBoundary from './components/ErrorBoundary';
+
+// Get the base URL from environment variable
+const baseURL = import.meta.env.VITE_APP_BASE_URL || '/';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -55,7 +59,11 @@ const router = createBrowserRouter(
           <Route path="/admin" element={<Admin />} />
           <Route path="/performance" element={<Performance />} />
           <Route path="/upload history" element={<UploadHistory />} />
-          <Route path="/data-mapping" element={<DataMapping />} />
+          <Route path="/data-mapping" element={
+            <ErrorBoundary>
+              <DataMapping />
+            </ErrorBoundary>
+          } />
           <Route path="/upload-excel-file" element={<ExcelUpload />} />
           <Route path="/admin-panel" element={<AdminPanel />} />
           <Route path="/history" element={<UploadHistory />} />
@@ -65,7 +73,10 @@ const router = createBrowserRouter(
         </Route>
       </Route>
     </>
-  )
+  ),
+  {
+    basename: baseURL
+  }
 );
 
 function App() {
