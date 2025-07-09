@@ -35,6 +35,9 @@ import Terms from "./scenes/Terms";
 import NotFound from "./scenes/NotFound";
 import Settings from './scenes/Settings';
 
+// Get the base URL from environment variable
+const baseURL = import.meta.env.VITE_APP_BASE_URL || '/';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -65,7 +68,10 @@ const router = createBrowserRouter(
         </Route>
       </Route>
     </>
-  )
+  ),
+  {
+    basename: baseURL
+  }
 );
 
 function App() {

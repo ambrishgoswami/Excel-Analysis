@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import "./index.css";
 import App from "./App.jsx";
@@ -21,13 +20,6 @@ const store = configureStore({
     getDefaultMiddleware().concat(api.middleware),
 });
 setupListeners(store.dispatch);
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

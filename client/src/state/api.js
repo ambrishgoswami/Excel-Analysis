@@ -1,7 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+// Use environment variable for API base URL, fallback to localhost for development
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_APP_BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: apiBaseUrl }),
   reducerPath: "adminApi",
   tagTypes: [
     "User",
