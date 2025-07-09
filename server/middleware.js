@@ -1,5 +1,15 @@
 import jwt from "jsonwebtoken";
 import AuthUser from "./models/AuthUser.js";
+import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
+
+const app = express();
+
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
 
 export const verifyToken = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
