@@ -1,0 +1,15 @@
+# Ignore root node_modules
+/node_modules/
+
+# Ignore client-side node_modules
+/client/node_modules/
+
+/client/.env
+
+# Ignore server-side node_modules
+/server/node_modules/
+
+/server/.env
+
+# Ignore root-level env files (if any)
+/.env
