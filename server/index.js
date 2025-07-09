@@ -28,6 +28,7 @@ import OverallStat from "./models/OverallStat.js";
 import AffiliateStat from "./models/AffiliateStat.js";
 import AuthUser from "./models/AuthUser.js";
 import ExcelUpload from "./models/ExcelUpload.js";
+import path from 'path';
 
 // CONFIGURATION
 const app = express();
@@ -38,6 +39,14 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+// React build serve karein
+// app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// // Sare unknown routes par React ka index.html serve karein
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+// });
 
 // ROUTES
 app.use("/general", generalRoutes);
