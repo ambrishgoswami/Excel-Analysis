@@ -39,6 +39,6 @@ export default defineConfig({
   },
   define: {
     'process.env.VITE_APP_BASE_URL': JSON.stringify(process.env.VITE_APP_BASE_URL || '/'),
-    'process.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL || 'http://localhost:5000'),
+    'process.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL || 'https://excel-analysis-backend-wyj2.onrender.com'),
   },
 });
