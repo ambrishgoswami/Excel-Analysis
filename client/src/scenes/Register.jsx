@@ -3,6 +3,8 @@ import { Box, Card, CardContent, Typography, TextField, Button, Link, Grid } fro
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { config } from "../utils/config";
+axios.defaults.baseURL = config.apiBaseUrl;
 
 const illustration = "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80";
 
@@ -87,7 +89,7 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      await axios.post("/auth/register", form);
+      await axios.post(`${config.apiBaseUrl}/auth/register`, form);
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.msg || "Registration failed");
