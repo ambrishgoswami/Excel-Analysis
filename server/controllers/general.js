@@ -1,5 +1,4 @@
 import OverallStat from "../models/OverallStat.js";
-import Transaction from "../models/Transaction.js";
 import User from "../models/User.js";
 
 export const getUser = async (req, res) => {
@@ -22,9 +21,7 @@ export const getDashboardStats = async (req, res) => {
     const overallStat = await OverallStat.find({ year: currentYear });
     const {
       yearlyTotalSoldUnits,
-      yearlySalesTotal,
       monthlyData,
-      salesByCategory,
     } = overallStat[0];
     const thisMonthStats = overallStat[0].monthlyData.find(
       ({ month }) => month === currentMonth
@@ -35,9 +32,7 @@ export const getDashboardStats = async (req, res) => {
 
     res.status(200).json({
       yearlyTotalSoldUnits,
-      yearlySalesTotal,
       monthlyData,
-      salesByCategory,
       thisMonthStats,
       todayStats,
     });

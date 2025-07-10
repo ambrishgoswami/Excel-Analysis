@@ -11,21 +11,21 @@ import mongoose from "mongoose";
 import generalRoutes from "./routes/generalRoutes.js";
 import clientRoutes from "./routes/clientRoutes.js";
 import managementRoutes from "./routes/managementRoutes.js";
-import salesRoutes from "./routes/salesRoutes.js";
+// import salesRoutes from "./routes/salesRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
-import Product from "./models/Product.js";
-import {
-  dataAffiliateStat,
-  dataOverallStat,
-  dataProduct,
-  dataProductStat,
-  dataTransaction,
-} from "./data/index.js";
-import ProductStat from "./models/ProductStat.js";
-import Transaction from "./models/Transaction.js";
-import OverallStat from "./models/OverallStat.js";
-import AffiliateStat from "./models/AffiliateStat.js";
+// import Product from "./models/Product.js";
+// import {
+//   dataAffiliateStat,
+//   dataOverallStat,
+//   dataProduct,
+//   dataProductStat,
+//   dataTransaction,
+// } from "./data/index.js";
+// import ProductStat from "./models/ProductStat.js";
+// import Transaction from "./models/Transaction.js";
+// import OverallStat from "./models/OverallStat.js";
+// import AffiliateStat from "./models/AffiliateStat.js";
 import AuthUser from "./models/AuthUser.js";
 import ExcelUpload from "./models/ExcelUpload.js";
 import path from 'path';
@@ -61,7 +61,7 @@ app.head("/", (req, res) => {
 app.use("/general", generalRoutes);
 app.use("/client", clientRoutes);
 app.use("/management", managementRoutes);
-app.use("/sales", salesRoutes);
+// app.use("/sales", salesRoutes);
 app.use("/auth", authRoutes);
 app.use("/upload", uploadRoutes);
 

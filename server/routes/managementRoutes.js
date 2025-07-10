@@ -1,7 +1,6 @@
 import express from "express";
 import {
   getAdmins,
-  getUserPerformance,
   getAllUsers,
   updateUserRole,
   updateUserStatus,
@@ -27,7 +26,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/admins", getAdmins);
-router.get("/performance/:id", getUserPerformance);
 
 // Admin panel routes
 router.get("/users", getAllUsers);

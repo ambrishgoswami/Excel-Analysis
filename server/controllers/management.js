@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import AuthUser from "../models/AuthUser.js";
-import Transaction from "../models/Transaction.js";
 import ExcelUpload from "../models/ExcelUpload.js";
 import AnalysisHistory from "../models/AnalysisHistory.js";
 import path from "path";
@@ -9,44 +8,6 @@ export const getAdmins = async (req, res) => {
   try {
     const admins = await AuthUser.find({ role: "admin" }).select("-password");
     res.status(200).json(admins);
-  } catch (error) {
-    console.log(error);
-    res.status(404).json({ message: error.message });
-  }
-};
-
-export const getUserPerformance = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const userWithStats = await AuthUser.aggregate([
-      { $match: { _id: new mongoose.Types.ObjectId(id) } },
-      {
-        $lookup: {
-          from: "affiliatestats",
-          localField: "_id",
-          foreignField: "userId",
-          as: "affiliateStats",
-        },
-      },
-      {
-        $unwind: { path: "$affiliateStats", preserveNullAndEmptyArrays: true },
-      },
-    ]);
-
-    const salesTransactions = await Promise.all(
-      userWithStats[0].affiliateStats.affiliateSales.map((id) => {
-        return Transaction.findById(id);
-      })
-    );
-
-    const filteredSaleTransactions = salesTransactions.filter(
-      (transaction) => transaction !== null
-    );
-
-    res
-      .status(200)
-      .json({ user: userWithStats[0], sales: filteredSaleTransactions });
   } catch (error) {
     console.log(error);
     res.status(404).json({ message: error.message });
