@@ -8,6 +8,7 @@ import {
   Route,
   RouterProvider,
   Navigate,
+  // useNavigate,
 } from "react-router-dom";
 import { loginSuccess } from "./state/authSlice";
 
@@ -25,6 +26,7 @@ import AdminPanel from "./scenes/AdminPanel";
 import Terms from "./scenes/Terms";
 import NotFound from "./scenes/NotFound";
 import Settings from './scenes/Settings';
+// import VoiceCommand from "./components/VoiceCommand";
 
 // Get the base URL from environment variable
 const baseURL = import.meta.env.VITE_APP_BASE_URL || '/';
@@ -60,6 +62,7 @@ function App() {
   const mode = useSelector((state) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   const dispatch = useDispatch();
+  // const navigate = useNavigate ? useNavigate() : null;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
