@@ -89,7 +89,7 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      await axios.post(`${config.apiBaseUrl}/auth/register`, form);
+      await axios.post("/auth/register", form);
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.msg || "Registration failed");

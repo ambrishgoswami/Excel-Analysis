@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
- origin: ['https://excel-analysis.netlify.app', 'https://excel-analysis-frontend.onrender.com'],
+ origin: process.env.CLIENT_URL,
   credentials: true
 }));
 
