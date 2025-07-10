@@ -38,7 +38,7 @@ export default defineConfig({
     include: ['react', 'react-dom'],
   },
   define: {
-    'process.env.VITE_APP_BASE_URL': JSON.stringify(process.env.VITE_APP_BASE_URL || '/'),
-    'process.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL || 'https://excel-analysis-backend-wyj2.onrender.com'),
+    'process.env.VITE_APP_BASE_URL': JSON.stringify(process.env.VITE_APP_BASE_URL || 'https://excel-analysis.netlify.app/'),
+    'process.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL || 'https://excel-analysis-backend-g0cc.onrender.com'),
   },
 });
