@@ -52,6 +52,12 @@ app.use(cors({
 // });
 
 // ROUTES
+app.get("/", (req, res) => {
+  res.json({ status: "OK", message: "Excel Analysis Backend is running!" });
+});
+app.head("/", (req, res) => {
+  res.status(200).end();
+});
 app.use("/general", generalRoutes);
 app.use("/client", clientRoutes);
 app.use("/management", managementRoutes);
