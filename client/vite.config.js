@@ -13,10 +13,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/auth": "http://localhost:5000",
-      "/upload": "http://localhost:5000",
-      "/management": "http://localhost:5000",
-      "/api": "http://localhost:5000",
+      "/auth": "http://localhost:8080",
+      "/upload": "http://localhost:8080",
+      "/management": "http://localhost:8080",
+      "/api": "http://localhost:8080",
     },
     historyApiFallback: true,
   },
