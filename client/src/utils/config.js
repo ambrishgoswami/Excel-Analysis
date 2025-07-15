@@ -4,7 +4,7 @@ export const config = {
   appBaseUrl: import.meta.env.VITE_APP_BASE_URL || '/',
   
   // API base URL (for API calls)
-  apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000',
+  apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080',
   
   // Environment
   isDevelopment: import.meta.env.DEV,
