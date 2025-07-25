@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { Box, Card, CardContent, Typography, TextField, Button, Link, Grid } from "@mui/material";
+import { Box, Card, CardContent, Typography, TextField, Button, Link, Grid, Snackbar, Alert, IconButton, Slide } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../state/authSlice";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CloseIcon from '@mui/icons-material/Close';
 
 const illustration = "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80";
 
@@ -79,8 +81,24 @@ function FallingPetals({ count = 18 }) {
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false); // Snackbar state for login
+  const [logoutSuccess, setLogoutSuccess] = useState(false); // Snackbar state for logout
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  // Show logout success popup if redirected from logout
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get("logout") === "1") {
+      setLogoutSuccess(true);
+    }
+  }, [location.search]);
+
+  // Slide transition for Snackbar
+  function SlideTransition(props) {
+    return <Slide {...props} direction="down" />;
+  }
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -93,7 +111,10 @@ const Login = () => {
       const res = await axios.post("/auth/login", form);
       localStorage.setItem("token", res.data.token);
       dispatch(loginSuccess(res.data));
-      navigate("/");
+      setSuccess(true); // Show snackbar
+      setTimeout(() => {
+        navigate("/");
+      }, 2000); // Redirect after 2 seconds
     } catch (err) {
       setError(err.response?.data?.msg || "Login failed");
     }
@@ -137,6 +158,58 @@ const Login = () => {
           </Box>
         </Box>
       </Card>
+      {/* Snackbar for login success */}
+      <Snackbar
+        open={success}
+        autoHideDuration={2000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        onClose={() => setSuccess(false)}
+        TransitionComponent={SlideTransition}
+      >
+        <Alert
+          severity="success"
+          sx={{ width: '100%', alignItems: 'center', fontSize: 18, fontWeight: 600, background: '#e8f5e9', color: '#388e3c' }}
+          iconMapping={{ success: <CheckCircleIcon fontSize="inherit" sx={{ color: '#43a047', mr: 1 }} /> }}
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => setSuccess(false)}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        >
+          Welcome back! Login successful.
+        </Alert>
+      </Snackbar>
+      {/* Snackbar for logout success */}
+      <Snackbar
+        open={logoutSuccess}
+        autoHideDuration={2000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        onClose={() => setLogoutSuccess(false)}
+        TransitionComponent={SlideTransition}
+      >
+        <Alert
+          severity="success"
+          sx={{ width: '100%', alignItems: 'center', fontSize: 18, fontWeight: 600, background: '#e3f2fd', color: '#1565c0' }}
+          iconMapping={{ success: <CheckCircleIcon fontSize="inherit" sx={{ color: '#1976d2', mr: 1 }} /> }}
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => setLogoutSuccess(false)}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        >
+          Logout successful. See you again!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
