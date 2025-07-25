@@ -49,7 +49,7 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
   const handleLogout = () => {
     dispatch(logout());
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/login?logout=1");
   };
 
   const handleUpload = async (file) => {
