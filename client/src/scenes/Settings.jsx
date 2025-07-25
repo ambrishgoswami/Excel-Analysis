@@ -26,7 +26,7 @@ const Settings = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    window.location.href = "/login";
+    window.location.href = "/login?logout=1";
   };
 
   return (
